@@ -10,6 +10,7 @@ public record DeliveryCompletedEvent(
         @JsonProperty("order_id") Long orderId,
         @JsonProperty("order_line_id") Long orderLineId,
         @JsonProperty("delivery_id") Long deliveryId,
+        @JsonProperty("customer_id") Long customerId,
         @JsonProperty("tracking_number") String trackingNumber,
         @JsonProperty("delivered_at") Instant deliveredAt,
         @JsonProperty("occurred_at") Instant occurredAt

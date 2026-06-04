@@ -19,6 +19,9 @@ public class DeliveryEntity extends BaseEntity {
     @Column(name = "order_id", nullable = false)
     private Long orderId;
 
+    @Column(name = "customer_id", nullable = false)
+    private Long customerId;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private DeliveryStatus status;
@@ -36,9 +39,10 @@ public class DeliveryEntity extends BaseEntity {
     private Integer version;
 
     @Builder
-    public DeliveryEntity(Long orderLineId, Long orderId, DeliveryStatus status, String carrierCode, String trackingNumber) {
+    public DeliveryEntity(Long orderLineId, Long orderId, Long customerId, DeliveryStatus status, String carrierCode, String trackingNumber) {
         this.orderLineId = orderLineId;
         this.orderId = orderId;
+        this.customerId = customerId;
         this.status = status;
         this.carrierCode = carrierCode;
         this.trackingNumber = trackingNumber;
