@@ -17,6 +17,7 @@ public class Delivery {
     private final DeliveryId id;
     private final Long orderLineId;
     private final Long orderId;
+    private final Long customerId;
     private DeliveryStatus status;
     private final TrackingInfo trackingInfo;
     private final List<TrackingHistory> trackingHistories;
@@ -24,13 +25,15 @@ public class Delivery {
     private Instant updatedAt;
 
     @Builder(builderMethodName = "createBuilder", builderClassName = "CreateBuilder")
-    public Delivery(Long orderLineId, Long orderId, TrackingInfo trackingInfo) {
+    public Delivery(Long orderLineId, Long orderId, Long customerId, TrackingInfo trackingInfo) {
         if (orderLineId == null || orderLineId <= 0) throw new InvalidFieldException("주문 라인 ID는 양수여야 합니다.");
         if (orderId == null || orderId <= 0) throw new InvalidFieldException("주문 ID는 양수여야 합니다.");
+        if (customerId == null || customerId <= 0) throw new InvalidFieldException("고객 ID는 양수여야 합니다.");
         if (trackingInfo == null) throw new InvalidFieldException("운송 정보는 필수입니다.");
         this.id = null;
         this.orderLineId = orderLineId;
         this.orderId = orderId;
+        this.customerId = customerId;
         this.status = DeliveryStatus.SHIPPED;
         this.trackingInfo = trackingInfo;
         this.trackingHistories = new ArrayList<>();
@@ -39,11 +42,12 @@ public class Delivery {
     }
 
     @Builder(builderMethodName = "reconstructBuilder", builderClassName = "ReconstructBuilder")
-    public Delivery(DeliveryId id, Long orderLineId, Long orderId, DeliveryStatus status, TrackingInfo trackingInfo,
+    public Delivery(DeliveryId id, Long orderLineId, Long orderId, Long customerId, DeliveryStatus status, TrackingInfo trackingInfo,
                     List<TrackingHistory> trackingHistories, Instant createdAt, Instant updatedAt) {
         if (id == null) throw new InvalidFieldException("배송 ID는 필수입니다.");
         if (orderLineId == null || orderLineId <= 0) throw new InvalidFieldException("주문 라인 ID는 양수여야 합니다.");
         if (orderId == null || orderId <= 0) throw new InvalidFieldException("주문 ID는 양수여야 합니다.");
+        if (customerId == null || customerId <= 0) throw new InvalidFieldException("고객 ID는 양수여야 합니다.");
         if (status == null) throw new InvalidFieldException("배송 상태는 필수입니다.");
         if (trackingInfo == null) throw new InvalidFieldException("운송 정보는 필수입니다.");
         if (createdAt == null) throw new InvalidFieldException("생성 시각은 필수입니다.");
@@ -51,6 +55,7 @@ public class Delivery {
         this.id = id;
         this.orderLineId = orderLineId;
         this.orderId = orderId;
+        this.customerId = customerId;
         this.status = status;
         this.trackingInfo = trackingInfo;
         this.trackingHistories = trackingHistories != null ? new ArrayList<>(trackingHistories) : new ArrayList<>();
