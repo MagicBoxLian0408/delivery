@@ -37,6 +37,7 @@ public class StartDeliveryService implements StartDeliveryUseCase {
         Delivery delivery = Delivery.createBuilder()
                 .orderLineId(command.orderLineId())
                 .orderId(command.orderId())
+                .customerId(command.customerId())
                 .trackingInfo(TrackingInfo.of(command.carrierCode(), command.trackingNumber()))
                 .build();
 

@@ -60,6 +60,7 @@ public class SyncDeliveryTrackingService {
                     .orderId(delivery.getOrderId())
                     .orderLineId(delivery.getOrderLineId())
                     .deliveryId(delivery.getId().value())
+                    .customerId(delivery.getCustomerId())
                     .trackingNumber(delivery.getTrackingInfo().trackingNumber())
                     .deliveredAt(now)
                     .occurredAt(now)
