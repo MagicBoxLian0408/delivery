@@ -20,10 +20,6 @@ spring:
             connect-timeout: 3000
             read-timeout: 5000
 
-security:
-  trusted:
-    ips:
-      - ${TRUSTED_IP_GATEWAY}
 
 sweet-tracker:
   api-key: ${SWEET_TRACKER_API_KEY}
