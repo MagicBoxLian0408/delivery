@@ -21,8 +21,6 @@ public class DeliveryOutboxAdapter implements DeliveryOutboxPort {
         deliveryOutboxJpaRepository.save(DeliveryOutboxEntity.builder()
                 .eventType(event.eventType().getValue())
                 .payload(payload)
-                .orderId(event.orderId())
-                .orderLineId(event.orderLineId())
                 .build());
     }
 }
